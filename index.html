@@ -13,6 +13,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json" />
+
     <title>Bank App</title>
 
     <style>
@@ -40,7 +43,7 @@
       .screen img {
         width: 100%;
         height: 100%;
-        object-fit: fill; /* şəkil tam otursun */
+        object-fit: fill;
       }
 
       .click-area {
@@ -48,7 +51,6 @@
         cursor: pointer;
       }
 
-      /* BUTTON AREAS */
       .btn-transfer {
         top: 36%;
         left: 5%;
@@ -77,7 +79,6 @@
         height: 12%;
       }
 
-      /* klik feedback (gizli amma hiss olunur) */
       .click-area:active {
         background: rgba(255, 255, 255, 0.08);
       }
@@ -89,8 +90,14 @@
       <img src="bank.png" alt="Bank App" />
 
       <div class="click-area btn-transfer" onclick="goPage('2.html')"></div>
-      <div class="click-area btn-payment" onclick="goPage('payment.html')"></div>
-      <div class="click-area btn-history" onclick="goPage('history.html')"></div>
+      <div
+        class="click-area btn-payment"
+        onclick="goPage('payment.html')"
+      ></div>
+      <div
+        class="click-area btn-history"
+        onclick="goPage('history.html')"
+      ></div>
       <div class="click-area card-area" onclick="goPage('2.html')"></div>
     </div>
 
@@ -98,18 +105,6 @@
       function goPage(page) {
         window.location.href = page;
       }
-
-      // URL bar tam gizlətmək üçün
-      function hideURLbar() {
-        if (window.history && window.history.pushState) {
-          window.history.pushState({}, '', '/'); // URL silinir
-        }
-        window.scrollTo(0, 1);
-      }
-
-      window.addEventListener("load", () => {
-        setTimeout(hideURLbar, 100);
-      });
 
       // swipe disable (app kimi hiss)
       document.addEventListener(
