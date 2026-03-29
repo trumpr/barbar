@@ -4,17 +4,11 @@
     <meta charset="UTF-8" />
 
     <!-- FULLSCREEN META -->
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <meta name="theme-color" content="#000000" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta
-      name="apple-mobile-web-app-status-bar-style"
-      content="black-translucent"
-    />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json" />
@@ -22,8 +16,7 @@
     <title>Bank App</title>
 
     <style>
-      html,
-      body {
+      html, body {
         margin: 0;
         padding: 0;
         height: 100%;
@@ -92,26 +85,10 @@
     <div class="screen">
       <img src="bank.png" alt="Bank App" />
 
-      <div
-        class="click-area btn-transfer"
-        onclick="goPage('2.html')"
-        aria-label="Transfer"
-      ></div>
-      <div
-        class="click-area btn-payment"
-        onclick="goPage('payment.html')"
-        aria-label="Payment"
-      ></div>
-      <div
-        class="click-area btn-history"
-        onclick="goPage('history.html')"
-        aria-label="History"
-      ></div>
-      <div
-        class="click-area card-area"
-        onclick="goPage('2.html')"
-        aria-label="Card"
-      ></div>
+      <div class="click-area btn-transfer" onclick="goPage('2.html')" aria-label="Transfer"></div>
+      <div class="click-area btn-payment" onclick="goPage('payment.html')" aria-label="Payment"></div>
+      <div class="click-area btn-history" onclick="goPage('history.html')" aria-label="History"></div>
+      <div class="click-area card-area" onclick="goPage('2.html')" aria-label="Card"></div>
     </div>
 
     <script>
@@ -120,38 +97,20 @@
       }
 
       // swipe disable (app kimi hiss)
-      document.addEventListener(
-        "touchmove",
-        function (e) {
-          e.preventDefault();
-        },
-        { passive: false },
-      );
+      document.addEventListener("touchmove", function(e) {
+        e.preventDefault();
+      }, { passive: false });
 
-      // Tam ekran üçün Android/iOS
-      function enableFullScreen() {
-        if (document.documentElement.requestFullscreen) {
-          document.documentElement.requestFullscreen();
-        } else if (document.documentElement.webkitRequestFullscreen) {
-          document.documentElement.webkitRequestFullscreen();
-        } else if (document.documentElement.msRequestFullscreen) {
-          document.documentElement.msRequestFullscreen();
-        }
-      }
-      enableFullScreen();
-
-      // URL bar gizlətmək üçün scroll hack (Chrome)
-      window.addEventListener("load", () => {
-        setTimeout(() => {
-          window.scrollTo(0, 1);
-        }, 100);
-      });
-
-      // iOS üçün “Add to Home Screen” prompt
+      // iOS / Android “Add to Home Screen” prompt
       let deferredPrompt;
       window.addEventListener("beforeinstallprompt", (e) => {
         e.preventDefault();
         deferredPrompt = e;
+      });
+
+      // Qismən fullscreen (browser-də)
+      window.addEventListener('load', () => {
+        setTimeout(() => { window.scrollTo(0,1); }, 100);
       });
     </script>
   </body>
