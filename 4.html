@@ -238,10 +238,22 @@
       </div>
       <div class="section-title">Mədaxil etmək</div>
       <div class="card-box transparent">
-        <input id="card" class="input" placeholder="Kart nömrəsi" />
+        <input
+          id="card"
+          class="input"
+          placeholder="Kart nömrəsi"
+          type="tel"
+          inputmode="numeric"
+        />
         <label for="amount" class="amount-label">Köçürmənin detalları</label>
         <div class="amount-row">
-          <input id="amount" class="input" placeholder="Məbləğ" />
+          <input
+            id="amount"
+            class="input"
+            placeholder="Məbləğ"
+            type="tel"
+            inputmode="decimal"
+          />
           <select class="input">
             <option>AZN</option>
           </select>
@@ -326,46 +338,7 @@
       }
 
       function send() {
-        let amt = parseFloat(amount.value);
-        let cardNum = card.value.replace(/\s/g, "");
-
-        // Əgər düymə "Testiq et"dirsə, səhifəyə yönləndir
-        if (btn.textContent === "Testiq et") {
-          window.location.href = "5.html";
-          return;
-        }
-
-        if (!(amt >= 0.01 && amt <= MAX_BALANCE)) {
-          amount.classList.add("error");
-          return;
-        }
-        if (cardNum.length !== 16) {
-          card.classList.add("error");
-          return;
-        }
-
-        // Spinner ekran ortasında göstər
-        spinnerOverlay.style.display = "flex";
-
-        // 1 saniyə sonra nəticəni göstər
-        setTimeout(() => {
-          spinnerOverlay.style.display = "none";
-          btn.textContent = "Testiq et"; // Düymə mətni dəyişir
-          document.getElementById("showAmount").textContent =
-            amt.toFixed(2) + " AZN";
-          resultContainer.style.display = "block";
-          setTimeout(() => {
-            resultContainer.style.opacity = 1;
-            resultContainer.style.transform = "translateY(0)";
-          }, 50);
-          resultContainer.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-        }, 1000);
-      }
-      function send() {
-        let amt = parseFloat(amount.value.replace(",", ".")); // onluq nöqtə üçün
+        let amt = parseFloat(amount.value.replace(",", "."));
         let cardNum = card.value.replace(/\s/g, "");
 
         if (!(amt >= 0.01 && amt <= MAX_BALANCE)) {
@@ -377,7 +350,6 @@
           return;
         }
 
-        // Spinner göstər
         spinnerOverlay.style.display = "flex";
 
         setTimeout(() => {
@@ -396,10 +368,8 @@
           });
         }, 1000);
 
-        // Kartın son 4 rəqəmi
         const last4 = cardNum.slice(-4);
 
-        // URL-ə göndərmək üçün Testiq et düyməsinə basanda
         btn.onclick = () => {
           window.location.href = `5.html?amount=${amt.toFixed(2)}&card=${last4}`;
         };
